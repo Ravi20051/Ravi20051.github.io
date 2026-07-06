@@ -12,36 +12,28 @@ interface Certificate {
 export default function Certificates() {
   const certificates: Certificate[] = [
     {
-      title: 'Machine Learning Specialization',
-      issuer: 'DeepLearning.AI & Stanford University',
-      date: 'Feb. 2026',
-      credentialId: 'ML-93817-2026',
-      skills: ['Supervised Learning', 'Unsupervised Learning', 'Neural Networks', 'Feature Engineering'],
-      verifyUrl: 'https://coursera.org/verify/specialization/ml-stanford'
+      title: 'Introduction to Data Science',
+      issuer: 'Cisco Networking Academy',
+      date: 'Jun. 2026',
+      credentialId: 'd03882aa-4fe6-408e-95ce-8b08f078f6e2',
+      skills: ['Data Science', 'Python Basics', 'Exploratory Data Analysis', 'Analytics'],
+      verifyUrl: '/all_certificates.pdf#page=1'
     },
     {
-      title: 'Python for Data Science, AI & Development',
-      issuer: 'IBM',
-      date: 'Nov. 2024',
-      credentialId: 'PY-IBM-55422',
-      skills: ['Python Programming', 'Pandas & NumPy', 'Data Analysis', 'APIs & Web Scraping'],
-      verifyUrl: 'https://coursera.org/verify/ibm-python-ds'
+      title: 'Python Essentials 1',
+      issuer: 'Cisco Networking Academy & Python Institute',
+      date: 'Jun. 2026',
+      credentialId: 'cadd4c2b-d8fc-498d-b36b-9092fb6446db',
+      skills: ['Python Basics', 'Control Flow', 'Data Structures', 'Functions & Exceptions'],
+      verifyUrl: '/all_certificates.pdf#page=2'
     },
     {
-      title: 'Meta Front-End Developer Professional Certificate',
-      issuer: 'Meta',
-      date: 'Aug. 2025',
-      credentialId: 'META-FE-9831',
-      skills: ['React.js', 'Next.js', 'JavaScript (ES6)', 'HTML & CSS Layouts'],
-      verifyUrl: 'https://coursera.org/verify/meta-frontend'
-    },
-    {
-      title: 'SQL for Data Science',
-      issuer: 'University of California, Davis',
-      date: 'May 2025',
-      credentialId: 'SQL-UCD-04921',
-      skills: ['SQL Queries', 'Relational Databases', 'Data Filtering', 'Joins & Subqueries'],
-      verifyUrl: 'https://coursera.org/verify/ucdavis-sql-ds'
+      title: 'Data Analytics Essentials',
+      issuer: 'Cisco Networking Academy',
+      date: 'Dec. 2024',
+      credentialId: '89b93ab5-81d0-479f-b0d0-38ed60bce829',
+      skills: ['Data Analytics', 'Excel & SQL', 'Data Visualization', 'Reporting'],
+      verifyUrl: '/all_certificates.pdf#page=3'
     }
   ];
 
@@ -54,6 +46,32 @@ export default function Certificates() {
         <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
           Key professional courses, training, and achievements that validate my technical expertise.
         </p>
+        
+        <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center' }}>
+          <a 
+            href="/all_certificates.pdf" 
+            target="_blank" 
+            rel="noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.6rem',
+              background: 'linear-gradient(135deg, var(--accent-cyan), var(--accent-purple))',
+              color: 'var(--bg-primary)',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '50px',
+              fontWeight: 700,
+              fontSize: '0.9rem',
+              textDecoration: 'none',
+              boxShadow: '0 4px 20px rgba(0, 242, 254, 0.25)',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+            }}
+            className="glow-hover"
+          >
+            <Award size={18} />
+            <span>Download All Certificates (Single PDF)</span>
+          </a>
+        </div>
       </div>
 
       <div style={{ 

@@ -55,10 +55,10 @@ export default function Projects() {
         'Implemented dynamic job postings with real-time search.'
       ],
       type: 'web',
-      githubLink: 'https://github.com/Ravi20051/mini_project.',
+      githubLink: 'https://github.com/Ravi20051/mini_project',
       additionalLinks: [
-        { label: 'Frontend Code', url: 'https://github.com/Ravi20051/mini_project./tree/main/internwait-frontend' },
-        { label: 'Backend Code', url: 'https://github.com/Ravi20051/mini_project./tree/main/internwait-backend' }
+        { label: 'Frontend Code', url: 'https://github.com/Ravi20051/mini_project/tree/main/internwait-frontend' },
+        { label: 'Backend Code', url: 'https://github.com/Ravi20051/mini_project/tree/main/internwait-backend' }
       ]
     }
   ];
