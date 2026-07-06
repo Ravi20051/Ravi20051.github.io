@@ -28,6 +28,7 @@ interface Project {
   type: 'web' | 'mobile' | 'ml';
   githubLink: string;
   demoLink?: string;
+  additionalLinks?: { label: string; url: string }[];
 }
 
 export default function Projects() {
@@ -48,13 +49,17 @@ export default function Projects() {
       title: 'Internship & Placement Management System',
       role: 'Full-Stack Developer',
       timeline: 'Jan. 2025 – Mar. 2025',
-      tech: ['Next.js', 'React.js', 'TypeScript', 'Node.js', 'Tailwind CSS', 'SQL'],
+      tech: ['React.js', 'Tailwind CSS', 'Java', 'Spring Boot', 'SQL'],
       bullets: [
         'Built a full-stack placement platform with role-based auth for students, admins, and recruiters.',
         'Implemented dynamic job postings with real-time search.'
       ],
       type: 'web',
-      githubLink: 'https://github.com/Ravi20051/Placement-Management-System'
+      githubLink: 'https://github.com/Ravi20051/mini_project.',
+      additionalLinks: [
+        { label: 'Frontend Code', url: 'https://github.com/Ravi20051/mini_project./tree/main/internwait-frontend' },
+        { label: 'Backend Code', url: 'https://github.com/Ravi20051/mini_project./tree/main/internwait-backend' }
+      ]
     }
   ];
 
@@ -182,32 +187,14 @@ export default function Projects() {
             {/* Links/Actions Footer */}
             <div style={{ 
               display: 'flex', 
-              gap: '1rem', 
+              flexDirection: 'column',
+              gap: '0.75rem', 
               borderTop: '1px solid var(--border-color)', 
               paddingTop: '1.25rem' 
             }}>
-              <a 
-                href={project.githubLink} 
-                target="_blank" 
-                rel="noreferrer" 
-                style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.4rem', 
-                  textDecoration: 'none', 
-                  fontSize: '0.9rem', 
-                  fontWeight: 600,
-                  color: 'var(--text-primary)',
-                  transition: 'color var(--transition-fast)'
-                }}
-                className="glow-hover"
-              >
-                <GithubIcon size={16} />
-                <span>Code Repository</span>
-              </a>
-              {project.demoLink && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
                 <a 
-                  href={project.demoLink} 
+                  href={project.githubLink} 
                   target="_blank" 
                   rel="noreferrer" 
                   style={{ 
@@ -217,12 +204,63 @@ export default function Projects() {
                     textDecoration: 'none', 
                     fontSize: '0.9rem', 
                     fontWeight: 600,
-                    color: 'var(--accent-cyan)'
+                    color: 'var(--text-primary)',
+                    transition: 'color var(--transition-fast)'
                   }}
+                  className="glow-hover"
                 >
-                  <ExternalLink size={16} />
-                  <span>Live Demo</span>
+                  <GithubIcon size={16} />
+                  <span>Code Repository</span>
                 </a>
+                {project.demoLink && (
+                  <a 
+                    href={project.demoLink} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: '0.4rem', 
+                      textDecoration: 'none', 
+                      fontSize: '0.9rem', 
+                      fontWeight: 600,
+                      color: 'var(--accent-cyan)'
+                    }}
+                  >
+                    <ExternalLink size={16} />
+                    <span>Live Demo</span>
+                  </a>
+                )}
+              </div>
+              {project.additionalLinks && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '0.25rem' }}>
+                  {project.additionalLinks.map((link, lIdx) => (
+                    <a
+                      key={lIdx}
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        textDecoration: 'none',
+                        fontSize: '0.8rem',
+                        fontWeight: 500,
+                        color: 'var(--accent-cyan)',
+                        background: 'rgba(0, 242, 254, 0.04)',
+                        border: '1px solid rgba(0, 242, 254, 0.15)',
+                        padding: '0.25rem 0.6rem',
+                        borderRadius: '6px',
+                        transition: 'all var(--transition-fast)'
+                      }}
+                      className="glow-hover"
+                    >
+                      <GithubIcon size={12} />
+                      <span>{link.label}</span>
+                    </a>
+                  ))}
+                </div>
               )}
             </div>
           </div>
