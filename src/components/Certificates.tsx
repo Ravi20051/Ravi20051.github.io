@@ -46,7 +46,7 @@ export default function Certificates() {
         </div>
         <div style={{ flex: 1, borderRadius: '8px', overflow: 'hidden', background: '#f5f5f7', marginTop: '0.75rem' }}>
           <iframe 
-            src="/all_certificates.pdf" 
+            src="/all_certificates.pdf?v=2" 
             title="All Certificates"
             style={{
               width: '100%',
