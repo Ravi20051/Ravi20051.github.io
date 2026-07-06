@@ -2,6 +2,15 @@ import os
 import shutil
 import sys
 
+def clean_filename(name):
+    base = os.path.splitext(name)[0]
+    if "_certificate_" in base:
+        base = base.split("_certificate_")[0]
+    base = base.replace(" - ", "_").replace(" ", "_").replace("-", "_").lower()
+    while "__" in base:
+        base = base.replace("__", "_")
+    return base + ".pdf"
+
 def process_certificates():
     try:
         from pypdf import PdfReader, PdfWriter
@@ -19,55 +28,56 @@ def process_certificates():
     # Ensure directories exist
     os.makedirs(certs_dest_dir, exist_ok=True)
 
-    # Dictionary mapping original filenames to clean public filenames
-    files_map = {
-        "Introduction_to_Data_Science_certificate_vailaravi2005-gmail-com_d03882aa-4fe6-408e-95ce-8b08f078f6e2.pdf": "intro_data_science.pdf",
-        "Python_Essentials_1_certificate_vailaravi2005-gmail-com_cadd4c2b-d8fc-498d-b36b-9092fb6446db.pdf": "python_essentials_1.pdf",
-        "Python_Essentials_2_certificate_vailaravi2005-gmail-com_be077a05-19a5-450b-9b7c-ad555fe99792.pdf": "python_essentials_2.pdf",
-        "Data_Analytics_Essentials_certificate_vailaravi2005-gmail-com_89b93ab5-81d0-479f-b0d0-38ed60bce829.pdf": "data_analytics_essentials.pdf"
-    }
+    if not os.path.exists(cert_dir):
+        print(f"Error: Directory '{cert_dir}' does not exist.")
+        return
 
-    # 1. Copy individual files to public/certificates/
-    print("Copying individual certificates...")
-    for src_name, dest_name in files_map.items():
-        src_path = os.path.join(cert_dir, src_name)
-        dest_path = os.path.join(certs_dest_dir, dest_name)
-        if os.path.exists(src_path):
-            shutil.copy(src_path, dest_path)
-            print(f"  Copied to {dest_path}")
-        else:
-            print(f"  Warning: Source file not found {src_path}")
+    # Get all PDF files
+    pdf_files = [f for f in os.listdir(cert_dir) if f.lower().endswith(".pdf")]
+    
+    if not pdf_files:
+        print(f"No PDF files found in '{cert_dir}'.")
+        return
 
-    # 2. Merge all certificates
-    print("\nMerging all certificates...")
+    # Sort files alphabetically to keep a stable merge order
+    pdf_files.sort()
+
+    print(f"Found {len(pdf_files)} certificates. Processing...")
+    
     writer = PdfWriter()
     added_count = 0
 
-    # Order of merged pages
-    merge_order = [
-        "Introduction_to_Data_Science_certificate_vailaravi2005-gmail-com_d03882aa-4fe6-408e-95ce-8b08f078f6e2.pdf",
-        "Python_Essentials_1_certificate_vailaravi2005-gmail-com_cadd4c2b-d8fc-498d-b36b-9092fb6446db.pdf",
-        "Python_Essentials_2_certificate_vailaravi2005-gmail-com_be077a05-19a5-450b-9b7c-ad555fe99792.pdf",
-        "Data_Analytics_Essentials_certificate_vailaravi2005-gmail-com_89b93ab5-81d0-479f-b0d0-38ed60bce829.pdf"
-    ]
+    for f in pdf_files:
+        src_path = os.path.join(cert_dir, f)
+        dest_name = clean_filename(f)
+        dest_path = os.path.join(certs_dest_dir, dest_name)
+        
+        # 1. Copy individual file
+        try:
+            shutil.copy(src_path, dest_path)
+            print(f"  Copied: {f} -> {dest_name}")
+        except Exception as e:
+            print(f"  Error copying {f}: {e}")
 
-    for f in merge_order:
-        path = os.path.join(cert_dir, f)
-        if os.path.exists(path):
-            try:
-                reader = PdfReader(path)
-                for page in reader.pages:
-                    writer.add_page(page)
-                added_count += 1
-                print(f"  Merged: {f}")
-            except Exception as e:
-                print(f"  Error reading {f}: {e}")
+        # 2. Merge page
+        try:
+            reader = PdfReader(src_path)
+            for page in reader.pages:
+                writer.add_page(page)
+            added_count += 1
+            print(f"  Merged page(s) of: {f}")
+        except Exception as e:
+            print(f"  Error merging {f}: {e}")
 
+    # Write merged file
     if added_count > 0:
-        with open(merged_output_file, "wb") as out_fp:
-            writer.write(out_fp)
-        writer.close()
-        print(f"\nSuccess! Merged {added_count} files into: {merged_output_file}")
+        try:
+            with open(merged_output_file, "wb") as out_fp:
+                writer.write(out_fp)
+            writer.close()
+            print(f"\nSuccess! Merged {added_count} files into: {merged_output_file}")
+        except Exception as e:
+            print(f"\nError writing merged file: {e}")
     else:
         print("\nError: No files merged.")
 
