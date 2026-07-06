@@ -4,7 +4,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Certificates from './components/Certificates';
 import DsPlayground from './components/DsPlayground';
-import Contact from './components/Contact';
+
 import { Menu, X, ArrowUp, Briefcase, GraduationCap, Code2, Award, Mail, Phone, MapPin, Printer } from 'lucide-react';
 
 export default function App() {
@@ -287,7 +287,7 @@ export default function App() {
           </div>
         </section>
 
-        <Contact />
+
       </main>
 
       {/* Footer */}

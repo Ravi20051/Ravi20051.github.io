@@ -108,7 +108,7 @@ export default function Hero() {
             <a href="#projects" className="btn btn-primary">
               View Work <ArrowRight size={18} />
             </a>
-            <a href="#contact" className="btn btn-secondary">
+            <a href="mailto:vailaravi2005@gmail.com" className="btn btn-secondary">
               Let's Connect
             </a>
             <a 
