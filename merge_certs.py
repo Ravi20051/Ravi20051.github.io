@@ -16,10 +16,10 @@ def merge_pdfs():
     # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)
 
-    # List of certificates in order
     files = [
         "Introduction_to_Data_Science_certificate_vailaravi2005-gmail-com_d03882aa-4fe6-408e-95ce-8b08f078f6e2.pdf",
         "Python_Essentials_1_certificate_vailaravi2005-gmail-com_cadd4c2b-d8fc-498d-b36b-9092fb6446db.pdf",
+        "Python_Essentials_2_certificate_vailaravi2005-gmail-com_be077a05-19a5-450b-9b7c-ad555fe99792.pdf",
         "Data_Analytics_Essentials_certificate_vailaravi2005-gmail-com_89b93ab5-81d0-479f-b0d0-38ed60bce829.pdf"
     ]
 

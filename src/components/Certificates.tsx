@@ -28,12 +28,20 @@ export default function Certificates() {
       verifyUrl: '/all_certificates.pdf#page=2'
     },
     {
+      title: 'Python Essentials 2',
+      issuer: 'Cisco Networking Academy & Python Institute',
+      date: 'Jun. 2026',
+      credentialId: 'be077a05-19a5-450b-9b7c-ad555fe99792',
+      skills: ['OOP (Object-Oriented)', 'Packages & Modules', 'String Processing', 'File I/O'],
+      verifyUrl: '/all_certificates.pdf#page=3'
+    },
+    {
       title: 'Data Analytics Essentials',
       issuer: 'Cisco Networking Academy',
       date: 'Dec. 2024',
       credentialId: '89b93ab5-81d0-479f-b0d0-38ed60bce829',
       skills: ['Data Analytics', 'Excel & SQL', 'Data Visualization', 'Reporting'],
-      verifyUrl: '/all_certificates.pdf#page=3'
+      verifyUrl: '/all_certificates.pdf#page=4'
     }
   ];
 
