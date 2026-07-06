@@ -1,14 +1,15 @@
 import os
 import shutil
+import sys
 
 def process_certificates():
     try:
-        from pypdf import PdfMerger
+        from pypdf import PdfReader, PdfWriter
     except ImportError:
         print("pypdf is not installed. Installing it now...")
         import subprocess
-        subprocess.check_call(["pip", "install", "pypdf"])
-        from pypdf import PdfMerger
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "pypdf"])
+        from pypdf import PdfReader, PdfWriter
 
     cert_dir = "certificate"
     public_dir = "public"
@@ -39,7 +40,7 @@ def process_certificates():
 
     # 2. Merge all certificates
     print("\nMerging all certificates...")
-    merger = PdfMerger()
+    writer = PdfWriter()
     added_count = 0
 
     # Order of merged pages
@@ -53,13 +54,19 @@ def process_certificates():
     for f in merge_order:
         path = os.path.join(cert_dir, f)
         if os.path.exists(path):
-            merger.append(path)
-            added_count += 1
-            print(f"  Merged: {f}")
+            try:
+                reader = PdfReader(path)
+                for page in reader.pages:
+                    writer.add_page(page)
+                added_count += 1
+                print(f"  Merged: {f}")
+            except Exception as e:
+                print(f"  Error reading {f}: {e}")
 
     if added_count > 0:
-        merger.write(merged_output_file)
-        merger.close()
+        with open(merged_output_file, "wb") as out_fp:
+            writer.write(out_fp)
+        writer.close()
         print(f"\nSuccess! Merged {added_count} files into: {merged_output_file}")
     else:
         print("\nError: No files merged.")
