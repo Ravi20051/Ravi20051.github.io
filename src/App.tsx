@@ -80,7 +80,10 @@ export default function App() {
             <a href="#playground" style={navLinkStyle}>DS Playground</a>
             <a href="#certificates" style={navLinkStyle}>Certificates</a>
             <a href="#resume" style={navLinkStyle}>Resume</a>
-            <a href="#contact" className="btn btn-primary" style={{ padding: '0.4rem 1rem', fontSize: '0.85rem' }}>Hire Me</a>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem', fontSize: '0.75rem', borderLeft: '1px solid var(--border-color)', paddingLeft: '1rem' }}>
+              <a href="mailto:vailaravi2005@gmail.com" style={{ color: 'var(--accent-cyan)', textDecoration: 'none', fontWeight: 600 }} className="glow-hover">vailaravi2005@gmail.com</a>
+              <a href="tel:+919347051424" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 600 }} className="glow-hover">+91 93470 51424</a>
+            </div>
           </nav>
 
           {/* Mobile Nav Toggle */}
@@ -123,9 +126,20 @@ export default function App() {
           <a href="#playground" onClick={toggleMobileMenu} style={mobileNavLinkStyle}>DS Playground</a>
           <a href="#certificates" onClick={toggleMobileMenu} style={mobileNavLinkStyle}>Certificates</a>
           <a href="#resume" onClick={toggleMobileMenu} style={mobileNavLinkStyle}>Resume</a>
-          <a href="#contact" onClick={toggleMobileMenu} className="btn btn-primary" style={{ width: '100%', textAlign: 'center', justifyContent: 'center' }}>
-            Hire Me
-          </a>
+          <div style={{ 
+            width: '100%', 
+            textAlign: 'center', 
+            borderTop: '1px solid var(--border-color)', 
+            paddingTop: '1.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.5rem',
+            fontSize: '0.95rem'
+          }}>
+            <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>Direct Contact:</span>
+            <a href="mailto:vailaravi2005@gmail.com" style={{ color: 'var(--accent-cyan)', textDecoration: 'none', fontWeight: 700 }}>vailaravi2005@gmail.com</a>
+            <a href="tel:+919347051424" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 700 }}>+91 93470 51424</a>
+          </div>
         </div>
       )}
 
